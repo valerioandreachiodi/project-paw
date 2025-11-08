@@ -1,8 +1,34 @@
 {
   "compilerOptions": {
+<<<<<<< HEAD
     "paths": {
+=======
+<<<<<<< HEAD
+    "target": "es5",
+    "module": "esnext",
+    "baseUrl": "./",
+    "moduleResolution": "node",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    },
+    "lib": [
+      "esnext",
+      "dom",
+      "dom.iterable",
+      "scripthost"
+    ]
+  }
+=======
+    "paths": {
+>>>>>>> c24b677 (Fix: package.json pulito e coerente con Vue 3 + Vite + PWA)
       "@/*": ["./src/*"]
     }
   },
   "exclude": ["node_modules", "dist"]
+<<<<<<< HEAD
+=======
+>>>>>>> 5e35342 (Initial commit: progetto Vue con routing e PWA)
+>>>>>>> c24b677 (Fix: package.json pulito e coerente con Vue 3 + Vite + PWA)
 }

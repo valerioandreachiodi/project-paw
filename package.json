@@ -8,10 +8,20 @@
   },
   "dependencies": {
     "vue": "^3.4.0",
+<<<<<<< HEAD
     "vue-router": "^4.6.3"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^6.0.1",
     "vite": "^7.2.2"
+=======
+    "vue-router": "^4.6.3",
+    "@supabase/supabase-js": "^2.80.0"
+  },
+  "devDependencies": {
+    "vite": "^7.2.2",
+    "@vitejs/plugin-vue": "^6.0.1",
+    "vite-plugin-pwa": "^0.16.3"
+>>>>>>> c24b677 (Fix: package.json pulito e coerente con Vue 3 + Vite + PWA)
   }
 }
