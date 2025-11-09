@@ -20,7 +20,8 @@
       <p v-if="error" class="error">{{ error }}</p>
 
       <div class="links">
-        <router-link to="/register">Registrati</router-link> |
+        <router-link to="/register">Registrati</router-link>
+        <span> | </span>
         <router-link to="/reset-password">Recupera password</router-link>
       </div>
     </form>
@@ -51,7 +52,6 @@ const handleLogin = async () => {
   if (loginError) {
     error.value = loginError.message
   } else {
-    // Ricordami: salva sessione nel localStorage
     if (rememberMe.value) {
       const { data } = await supabase.auth.getSession()
       localStorage.setItem('supabase_session', JSON.stringify(data.session))
@@ -89,4 +89,7 @@ button {
   margin-top: 10px;
 }
 .links {
-  margin-top:
+  margin-top: 20px;
+  text-align: center;
+}
+</style>
