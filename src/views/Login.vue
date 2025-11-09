@@ -8,11 +8,21 @@
       <label>Password:</label>
       <input type="password" v-model="password" required />
 
+      <label>
+        <input type="checkbox" v-model="rememberMe" />
+        Ricordami
+      </label>
+
       <button type="submit" :disabled="loading">
         {{ loading ? 'Accesso in corso...' : 'Accedi' }}
       </button>
 
       <p v-if="error" class="error">{{ error }}</p>
+
+      <div class="links">
+        <router-link to="/register">Registrati</router-link> |
+        <router-link to="/reset-password">Recupera password</router-link>
+      </div>
     </form>
   </div>
 </template>
@@ -24,6 +34,7 @@ import { useRouter } from 'vue-router'
 
 const email = ref('')
 const password = ref('')
+const rememberMe = ref(false)
 const loading = ref(false)
 const error = ref('')
 const router = useRouter()
@@ -40,6 +51,11 @@ const handleLogin = async () => {
   if (loginError) {
     error.value = loginError.message
   } else {
+    // Ricordami: salva sessione nel localStorage
+    if (rememberMe.value) {
+      const { data } = await supabase.auth.getSession()
+      localStorage.setItem('supabase_session', JSON.stringify(data.session))
+    }
     router.push('/')
   }
 
@@ -57,7 +73,8 @@ label {
   display: block;
   margin-top: 15px;
 }
-input {
+input[type="email"],
+input[type="password"] {
   width: 100%;
   padding: 8px;
   margin-top: 5px;
@@ -71,4 +88,5 @@ button {
   color: red;
   margin-top: 10px;
 }
-</style>
+.links {
+  margin-top:
