@@ -1,17 +1,13 @@
 <template>
-  <div class="login">
-    <h2>Accedi</h2>
-    <form @submit.prevent="handleLogin">
-      <label>Email:</label>
+  <div class="auth-container">
+    <form @submit.prevent="handleLogin" class="auth-form">
+      <h2>Accedi</h2>
+
+      <label>Email</label>
       <input type="email" v-model="email" required />
 
-      <label>Password:</label>
+      <label>Password</label>
       <input type="password" v-model="password" required />
-
-      <label>
-        <input type="checkbox" v-model="rememberMe" />
-        Ricordami
-      </label>
 
       <button type="submit" :disabled="loading">
         {{ loading ? 'Accesso in corso...' : 'Accedi' }}
@@ -20,8 +16,7 @@
       <p v-if="error" class="error">{{ error }}</p>
 
       <div class="links">
-        <router-link to="/register">Registrati</router-link>
-        <span> | </span>
+        <router-link to="/register">Registrati</router-link> |
         <router-link to="/reset-password">Recupera password</router-link>
       </div>
     </form>
@@ -35,7 +30,6 @@ import { useRouter } from 'vue-router'
 
 const email = ref('')
 const password = ref('')
-const rememberMe = ref(false)
 const loading = ref(false)
 const error = ref('')
 const router = useRouter()
@@ -52,10 +46,6 @@ const handleLogin = async () => {
   if (loginError) {
     error.value = loginError.message
   } else {
-    if (rememberMe.value) {
-      const { data } = await supabase.auth.getSession()
-      localStorage.setItem('supabase_session', JSON.stringify(data.session))
-    }
     router.push('/')
   }
 
@@ -64,32 +54,68 @@ const handleLogin = async () => {
 </script>
 
 <style scoped>
-.login {
+.auth-container {
+  background-color: #f0f8ff;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.auth-form {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 119, 182, 0.2);
+  width: 100%;
   max-width: 400px;
-  margin: 50px auto;
   font-family: sans-serif;
+}
+.auth-form h2 {
+  text-align: center;
+  color: #0077b6;
+  margin-bottom: 20px;
 }
 label {
   display: block;
   margin-top: 15px;
+  color: #333;
 }
-input[type="email"],
-input[type="password"] {
+input {
   width: 100%;
-  padding: 8px;
+  padding: 10px;
   margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
 }
 button {
   margin-top: 20px;
-  padding: 10px;
   width: 100%;
+  padding: 12px;
+  background-color: #0077b6;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #005f8a;
 }
 .error {
-  color: red;
+  color: #d32f2f;
   margin-top: 10px;
+  text-align: center;
 }
 .links {
   margin-top: 20px;
   text-align: center;
+  font-size: 0.9em;
+}
+.links a {
+  color: #0077b6;
+  text-decoration: none;
+}
+.links a:hover {
+  text-decoration: underline;
 }
 </style>
