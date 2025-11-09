@@ -7,12 +7,15 @@ export default defineConfig({
     vue(),
                             VitePWA({
                               registerType: 'autoUpdate',
-                              includeAssets: ['favicon.ico'],
+                              includeAssets: ['favicon.svg', 'favicon.ico', 'robots.txt', 'apple-touch-icon.png'],
                               manifest: {
                                 name: 'Project Paw',
                                 short_name: 'Paw',
-                                description: 'App dedicata agli amici a quattro zampe',
+                                description: 'Gestione animali e adozioni',
                                 theme_color: '#42b983',
+                                background_color: '#ffffff',
+                                display: 'standalone',
+                                start_url: '/',
                                 icons: [
                                   {
                                     src: 'pwa-192x192.png',
