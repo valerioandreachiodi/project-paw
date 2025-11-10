@@ -17,7 +17,7 @@
       </button>
 
       <p v-if="error" class="error">{{ error }}</p>
-      <p v-if="success" class="success">Registrazione completata! Ora puoi accedere.</p>
+      <p v-if="success" class="success">Registrazione completata! Controlla la tua email per confermare.</p>
 
       <div class="links">
         <router-link to="/login">Hai già un account? Accedi</router-link>
@@ -48,7 +48,8 @@ const handleRegister = async () => {
     options: {
       data: {
         username: username.value
-      }
+      },
+      redirectTo: 'https://project-paw.pages.dev/login' // ✅ redirect dopo conferma email
     }
   })
 
