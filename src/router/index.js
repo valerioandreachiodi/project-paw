@@ -3,12 +3,12 @@ import HomeView from '../views/HomeView.vue'
 import Register from '../views/Register.vue'
 import Login from '../views/Login.vue'
 import ResetPassword from '../views/ResetPassword.vue'
-import Pagina1 from './views/Pagina1.vue'
-import Pagina2 from './views/Pagina2.vue'
-import Pagina3 from './views/Pagina3.vue'
-import Pagina4 from './views/Pagina4.vue'
-import Pagina5 from './views/Pagina5.vue'
-import Pagina6 from './views/Pagina6.vue'
+import Pagina1 from '../views/Pagina1.vue'
+import Pagina2 from '../views/Pagina2.vue'
+import Pagina3 from '../views/Pagina3.vue'
+import Pagina4 from '../views/Pagina4.vue'
+import Pagina5 from '../views/Pagina5.vue'
+import Pagina6 from '../views/Pagina6.vue'
 
 const routes = [
     { path: '/', name: 'Home', component: HomeView },
