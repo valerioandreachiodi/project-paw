@@ -11,12 +11,13 @@
       <p>Effettua il login per visualizzare il tuo profilo.</p>
     </div>
 
-    <!-- 🔹 Griglia di pulsanti con icone -->
-    <div class="button-grid">
-      <router-link v-for="n in 6" :key="n" :to="`/pagina${n}`" class="icon-button">
-        <img :src="icons[n-1]" alt="Icona Pagina" />
-        <span>Pagina {{ n }}</span>
-      </router-link>
+    <!-- 🔹 Griglia di card -->
+    <div class="card-grid">
+      <div class="card" v-for="n in 6" :key="n">
+        <img :src="`https://picsum.photos/300/200?random=${n}`" alt="Card image" />
+        <h3>Pagina {{ n }}</h3>
+        <router-link :to="`/pagina${n}`" class="card-button">Vai</router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -24,16 +25,6 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { supabase } from '../supabase'
-
-// 🔹 importa le icone locali da src/assets
-import icon1 from '../assets/open-book.png'
-import icon2 from '../assets/calendar.png'
-import icon3 from '../assets/golden-retriever.png'
-import icon4 from '../assets/cat.png'
-import icon5 from '../assets/health-checkup.png'
-import icon6 from '../assets/physics.png'
-
-const icons = [icon1, icon2, icon3, icon4, icon5, icon6]
 
 const profile = ref(null)
 const loading = ref(true)
@@ -82,38 +73,44 @@ strong {
   color: #005f8a;
 }
 
-/* 🔹 Griglia pulsanti */
-.button-grid {
+/* 🔹 Stile griglia card */
+.card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
   margin-top: 30px;
 }
-.icon-button {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+.card {
   background: white;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 119, 182, 0.2);
-  padding: 20px;
-  text-decoration: none;
-  color: #0077b6;
-  font-weight: bold;
-  transition: transform 0.2s ease, background-color 0.2s ease;
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.2s ease;
 }
-.icon-button:hover {
+.card:hover {
   transform: translateY(-5px);
-  background-color: #e6f7ff;
 }
-.icon-button img {
-  width: 60px;
-  height: 60px;
-  margin-bottom: 10px;
-  object-fit: contain;
+.card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
 }
-.icon-button span {
-  font-size: 1.1em;
+.card h3 {
+  margin: 15px 0;
+  color: #0077b6;
+}
+.card-button {
+  display: inline-block;
+  margin-bottom: 15px;
+  padding: 10px 20px;
+  background-color: #0077b6;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+}
+.card-button:hover {
+  background-color: #005f8a;
 }
 </style>
