@@ -14,7 +14,7 @@ const routes = [
     { path: '/', name: 'Home', component: HomeView },
     { path: '/login', name: 'Login', component: Login },
     { path: '/register', name: 'Register', component: Register },
-    { path: '/reset-password', name: 'ResetPassword', component: ResetPassword }
+    { path: '/reset-password', name: 'ResetPassword', component: ResetPassword },
     { path: '/pagina1', component: Pagina1 },
     { path: '/pagina2', component: Pagina2 },
     { path: '/pagina3', component: Pagina3 },
