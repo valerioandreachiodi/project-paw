@@ -24,6 +24,7 @@
 
     <!-- 🔹 Footer elegante -->
 
+  </div>
 </template>
 
 <script setup>
