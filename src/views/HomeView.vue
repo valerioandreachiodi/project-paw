@@ -1,25 +1,43 @@
 <template>
   <div class="home">
-    <h1>Benvenuto su Project Paw 🐾</h1>
+    <!-- 🔹 Header elegante -->
+    <header class="top-bar">
+      <div class="logo">Project Paw 🐾</div>
+      <nav class="nav-links">
+        <router-link to="/">Home</router-link>
+        <router-link to="/chi-siamo">Chi siamo</router-link>
+      </nav>
+      <div class="logout-area" v-if="profile">
+        <button @click="logout" class="logout-btn">Logout</button>
+      </div>
+    </header>
 
-    <div v-if="loading">Caricamento profilo...</div>
-    <div v-else-if="profile">
-      <p><strong>Nome utente:</strong> {{ profile.username }}</p>
-      <p><strong>Ruolo:</strong> {{ profile.role }}</p>
-      <!-- 🔹 Pulsante Logout -->
-      <button @click="logout" class="logout-btn">Logout</button>
-    </div>
-    <div v-else>
-      <p>Effettua il login per visualizzare il tuo profilo.</p>
-    </div>
+    <!-- 🔹 Contenuto principale -->
+    <main class="main-content">
+      <h1>Benvenuto su Project Paw 🐾</h1>
 
-    <!-- 🔹 Griglia di pulsanti con icone -->
-    <div class="button-grid">
-      <router-link v-for="n in 6" :key="n" :to="`/pagina${n}`" class="icon-button">
-        <img :src="icons[n-1]" alt="Icona Pagina" />
-        <span>Pagina {{ n }}</span>
-      </router-link>
-    </div>
+      <div v-if="loading">Caricamento profilo...</div>
+      <div v-else-if="profile">
+        <p><strong>Nome utente:</strong> {{ profile.username }}</p>
+        <p><strong>Ruolo:</strong> {{ profile.role }}</p>
+      </div>
+      <div v-else>
+        <p>Effettua il login per visualizzare il tuo profilo.</p>
+      </div>
+
+      <!-- 🔹 Griglia di pulsanti ENPA -->
+      <div class="button-grid">
+        <router-link v-for="n in 6" :key="n" :to="`/pagina${n}`" class="icon-button">
+          <img :src="icons[n-1]" alt="Icona Pagina" />
+          <span>Pagina {{ n }}</span>
+        </router-link>
+      </div>
+    </main>
+
+    <!-- 🔹 Footer elegante -->
+    <footer class="bottom-bar">
+      © 2025 Project Paw ENPA - Tutti i diritti riservati
+    </footer>
   </div>
 </template>
 
@@ -43,22 +61,15 @@ const loading = ref(true)
 const router = useRouter()
 
 onMounted(async () => {
-  const {
-    data: { user }
-  } = await supabase.auth.getUser()
-
+  const { data: { user } } = await supabase.auth.getUser()
   if (user) {
     const { data, error } = await supabase
       .from('profiles')
       .select('username, role')
       .eq('id', user.id)
       .single()
-
-    if (!error) {
-      profile.value = data
-    }
+    if (!error) profile.value = data
   }
-
   loading.value = false
 })
 
@@ -70,32 +81,50 @@ const logout = async () => {
 </script>
 
 <style scoped>
-.home {
-  max-width: 1000px;
-  margin: 50px auto;
-  padding: 20px;
-  background-color: #f0f8ff;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 119, 182, 0.2);
-  font-family: sans-serif;
-  text-align: center;
-}
-h1 {
-  color: #0077b6;
-  margin-bottom: 20px;
-}
-p {
-  font-size: 1.1em;
-  color: #333;
-}
-strong {
-  color: #005f8a;
+:root {
+  --black-elegant: #2C2C2C;   /* Charcoal */
+  --black-soft: #353535;      /* Onyx */
+  --black-graphite: #3A3A3A;  /* Graphite */
+  --white: #F5F5F5;
+  --accent: #1BA7A1;          /* Teal accent */
 }
 
-/* 🔹 Pulsante Logout */
+.home {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--black-elegant);
+  color: var(--white);
+  font-family: "Segoe UI", Roboto, sans-serif;
+}
+
+/* 🔹 Header */
+.top-bar {
+  background-color: var(--black-soft);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+.logo {
+  font-size: 1.4em;
+  font-weight: bold;
+  color: var(--white);
+}
+.nav-links a {
+  color: var(--white);
+  margin: 0 1rem;
+  text-decoration: none;
+  font-weight: 600;
+}
+.nav-links a:hover {
+  color: var(--accent);
+}
+.logout-area {
+  margin-left: auto;
+}
 .logout-btn {
-  margin-top: 15px;
-  padding: 8px 16px;
+  padding: 6px 14px;
   background-color: #ff4d4d;
   color: white;
   border: none;
@@ -106,6 +135,25 @@ strong {
 }
 .logout-btn:hover {
   background-color: #e60000;
+}
+
+/* 🔹 Main */
+.main-content {
+  flex: 1;
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 20px;
+  text-align: center;
+}
+h1 {
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+p {
+  font-size: 1.1em;
+}
+strong {
+  color: var(--white);
 }
 
 /* 🔹 Griglia pulsanti */
@@ -120,18 +168,18 @@ strong {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: white;
+  background: var(--black-graphite);
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 119, 182, 0.2);
+  box-shadow: 0 4px 12px rgba(0,0,0,.4);
   padding: 20px;
   text-decoration: none;
-  color: #0077b6;
+  color: var(--white);
   font-weight: bold;
   transition: transform 0.2s ease, background-color 0.2s ease;
 }
 .icon-button:hover {
   transform: translateY(-5px);
-  background-color: #e6f7ff;
+  background-color: var(--black-soft);
 }
 .icon-button img {
   width: 60px;
@@ -141,5 +189,14 @@ strong {
 }
 .icon-button span {
   font-size: 1.1em;
+}
+
+/* 🔹 Footer */
+.bottom-bar {
+  background-color: var(--black-soft);
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+  color: #ccc;
 }
 </style>
