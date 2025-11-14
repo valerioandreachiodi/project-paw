@@ -6,6 +6,8 @@
     <div v-else-if="profile">
       <p><strong>Nome utente:</strong> {{ profile.username }}</p>
       <p><strong>Ruolo:</strong> {{ profile.role }}</p>
+      <!-- 🔹 Pulsante Logout -->
+      <button @click="logout" class="logout-btn">Logout</button>
     </div>
     <div v-else>
       <p>Effettua il login per visualizzare il tuo profilo.</p>
@@ -24,6 +26,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { supabase } from '../supabase'
+import { useRouter } from 'vue-router'
 
 // 🔹 importa le icone locali da src/assets
 import icon1 from '../assets/open-book.png'
@@ -37,6 +40,7 @@ const icons = [icon1, icon2, icon3, icon4, icon5, icon6]
 
 const profile = ref(null)
 const loading = ref(true)
+const router = useRouter()
 
 onMounted(async () => {
   const {
@@ -57,6 +61,12 @@ onMounted(async () => {
 
   loading.value = false
 })
+
+// 🔹 Funzione Logout
+const logout = async () => {
+  await supabase.auth.signOut()
+  router.push({ name: 'Login' })
+}
 </script>
 
 <style scoped>
@@ -80,6 +90,22 @@ p {
 }
 strong {
   color: #005f8a;
+}
+
+/* 🔹 Pulsante Logout */
+.logout-btn {
+  margin-top: 15px;
+  padding: 8px 16px;
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+.logout-btn:hover {
+  background-color: #e60000;
 }
 
 /* 🔹 Griglia pulsanti */
