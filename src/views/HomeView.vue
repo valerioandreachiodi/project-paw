@@ -186,6 +186,6 @@ strong {
   text-align: center;
   padding: 1rem;
   font-size: 0.9rem;
-  color: #ccc;
+  color: #1BA7A1;
 }
 </style>
