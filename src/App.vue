@@ -12,6 +12,11 @@
 
   <!-- 🔹 Mostra il componente della route attiva -->
   <router-view />
+
+  <!-- 🔹 Footer globale -->
+  <footer class="footer">
+    © 2025 Project Paw ENPA - Tutti i diritti riservati
+  </footer>
 </template>
 
 <script setup>
@@ -64,5 +69,15 @@ const logout = async () => {
 }
 .logout-btn:hover {
   background-color: #E65C50; /* corallo più scuro */
+}
+
+/* 🔹 Footer */
+.footer {
+  background-color: #353535; /* stesso sfondo della navbar */
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+  color: #ccc; /* grigio chiaro elegante */
+  margin-top: 20px;
 }
 </style>

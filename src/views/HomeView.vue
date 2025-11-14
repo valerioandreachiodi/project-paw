@@ -23,10 +23,7 @@
     </main>
 
     <!-- 🔹 Footer elegante -->
-    <footer class="bottom-bar">
-      © 2025 Project Paw ENPA - Tutti i diritti riservati
-    </footer>
-  </div>
+
 </template>
 
 <script setup>
