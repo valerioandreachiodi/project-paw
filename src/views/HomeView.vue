@@ -75,6 +75,7 @@ const logout = async () => {
   --black-graphite: #3A3A3A;  /* Graphite */
   --white: #F5F5F5;
   --accent: #1BA7A1;          /* Teal accent */
+  --scuro: #353535            /* Scuro elegante */
 }
 
 .home {
@@ -181,7 +182,7 @@ strong {
 
 /* 🔹 Footer */
 .bottom-bar {
-  background-color: var(--black-soft);
+  background-color: var(--scuro);
   text-align: center;
   padding: 1rem;
   font-size: 0.9rem;
