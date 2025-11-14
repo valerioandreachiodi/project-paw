@@ -1,17 +1,5 @@
 <template>
   <div class="home">
-    <!-- 🔹 Header elegante -->
-    <header class="top-bar">
-      <div class="logo">Project Paw 🐾</div>
-      <nav class="nav-links">
-        <router-link to="/">Home</router-link>
-        <router-link to="/chi-siamo">Chi siamo</router-link>
-      </nav>
-      <div class="logout-area" v-if="profile">
-        <button @click="logout" class="logout-btn">Logout</button>
-      </div>
-    </header>
-
     <!-- 🔹 Contenuto principale -->
     <main class="main-content">
       <h1>Benvenuto su Project Paw 🐾</h1>
