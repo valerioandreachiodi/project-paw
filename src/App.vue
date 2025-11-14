@@ -77,7 +77,7 @@ const logout = async () => {
   text-align: center;
   padding: 1rem;
   font-size: 0.9rem;
-  color: #ccc; /* grigio chiaro elegante */
+  color: #1BA7A1; /* verde acqua ENPA */
   margin-top: 20px;
 }
 </style>
